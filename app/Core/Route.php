@@ -29,6 +29,10 @@ class Route
             echo 'not found';
         }
 
+        if (is_array($callback)) {
+            $callback[0] = new $callback[0]();
+        }
+
         return call_user_func($callback);
     }
 }
