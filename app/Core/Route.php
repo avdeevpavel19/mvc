@@ -20,6 +20,11 @@ class Route
         $this->routes["get"][$path] = $callback;
     }
 
+    public function post($path, $callback)
+    {
+        $this->routes["post"][$path] = $callback;
+    }
+
     public function resolve()
     {
         $path   = $this->request->path();
@@ -38,6 +43,6 @@ class Route
             $callback[0]          = $controller;
         }
 
-        return call_user_func($callback);
+        return call_user_func($callback, $this->request);
     }
 }

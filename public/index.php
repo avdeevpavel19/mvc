@@ -11,6 +11,7 @@ $app = new App;
 $app->route->get('/', [MainController::class, 'index']);
 
 $app->route->get('/register', [AuthController::class, 'register']);
+$app->route->post('/register', [AuthController::class, 'register']);
 $app->route->get('/login', [AuthController::class, 'login']);
 
 $app->run();
