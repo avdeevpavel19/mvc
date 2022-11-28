@@ -2,10 +2,14 @@
 
 namespace App\Controllers;
 
-class MainController
+use App\Core\Controller;
+
+class MainController extends Controller
 {
     public function index()
     {
-        echo 'main';
+        $name = 'test';
+
+        return $this->render('main', ['name' => $name]);
     }
 }

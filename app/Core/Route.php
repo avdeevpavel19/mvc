@@ -2,6 +2,8 @@
 
 namespace App\Core;
 
+use App\Exceptions\NotFoundException;
+
 class Route
 {
     protected Request $request;
@@ -25,12 +27,15 @@ class Route
 
         $callback = $this->routes[$method][$path] ?? false;
 
-        if ($callback === false) {
-            echo 'not found';
+        if (!$callback) {
+            throw new NotFoundException();
         }
 
         if (is_array($callback)) {
-            $callback[0] = new $callback[0]();
+            $controller           = new $callback[0];
+            App::$app->controller = $controller;
+            $controller->action   = $callback[1];
+            $callback[0]          = $controller;
         }
 
         return call_user_func($callback);

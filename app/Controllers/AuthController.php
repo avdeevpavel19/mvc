@@ -2,15 +2,17 @@
 
 namespace App\Controllers;
 
-class AuthController
+use App\Core\Controller;
+
+class AuthController extends Controller
 {
     public function register()
     {
-        echo 'register';
+        return $this->render('register');
     }
 
     public function login()
     {
-        echo 'login';
+        return $this->render('login');
     }
 }
