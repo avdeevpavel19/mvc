@@ -6,7 +6,18 @@ use App\Core\App;
 use App\Controllers\MainController;
 use App\Controllers\AuthController;
 
-$app = new App;
+$dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
+$dotenv->load();
+
+$config = [
+    'db' => [
+        'dsn'      => $_ENV['DB_DSN'],
+        'user'     => $_ENV['DB_USER'],
+        'password' => $_ENV['DB_PASSWORD']
+    ]
+];
+
+$app = new App($config);
 
 $app->route->get('/', [MainController::class, 'index']);
 

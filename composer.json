@@ -11,5 +11,8 @@
             "email": "avdeevpavel19@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+      "ext-pdo": "*",
+        "vlucas/phpdotenv": "^5.5"
+    }
 }
