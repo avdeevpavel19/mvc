@@ -80,4 +80,24 @@ abstract class Model
             self::CONFIRM_RULE  => 'Повторный пароль не совпадает'
         ];
     }
+
+    public function labels(): array
+    {
+        return [];
+    }
+
+    public function getLabel($attribute)
+    {
+        return $this->labels()[$attribute] ?? $attribute;
+    }
+
+    public function hasError($attribute)
+    {
+        return $this->errors[$attribute] ?? false;
+    }
+
+    public function getFirstError($attribute)
+    {
+        return $this->errors[$attribute][0] ?? false;
+    }
 }

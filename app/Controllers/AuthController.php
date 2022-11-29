@@ -19,11 +19,7 @@ class AuthController extends Controller
             }
         }
 
-        echo '<pre>';
-        print_r($user->errors);
-        echo '</pre>';
-
-        return $this->render('register');
+        return $this->render('register', ['user' => $user]);
     }
 
     public function login()

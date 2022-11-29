@@ -23,4 +23,13 @@ class Register extends DbModel
     {
         return ['login', 'password'];
     }
+
+    public function labels(): array
+    {
+        return [
+            'login'           => 'Логин',
+            'password'        => 'Пароль',
+            'passwordConfirm' => 'Повторный пароль',
+        ];
+    }
 }

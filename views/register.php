@@ -1,28 +1,39 @@
-<form method="POST" action="/register">
-    <h2>Регистрация</h2>
-    <div class="mb-3">
-        <label for="exampleInputLogin1" class="form-label">Логин</label>
-        <input type="text" class="form-control" id="exampleInputLogin1" name="login" placeholder="Введите email">
-    </div>
-    <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Пароль</label>
-        <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Введите пароль">
-    </div>
-    <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Повторный пароль</label>
-        <input type="password" class="form-control" id="exampleInputPassword1" name="passwordConfirm" placeholder="Введите повторный пароль">
-    </div>
+<?php
 
-    <div class="butns" style="display: flex; justify-content: space-between">
-        <button type="submit" class="btn btn-primary" name="registerBtn">Зарегистрироваться</button>
-        <a href="/login">Уже зарегистрированы ?</a>
-    </div>
-</form>
+/** @var $user \App\Models\Register */
+
+$form = new \App\Core\Form\Form;
+
+?>
+
+<h2>Регистрация</h2>
+
+<?php $form::begin('', 'post') ?>
+<?php echo $form->field($user, 'login') ?>
+<?php echo $form->field($user, 'password')->passwordField() ?>
+<?php echo $form->field($user, 'passwordConfirm')->passwordField() ?>
+<div class="butns" style="display: flex; justify-content: space-between">
+    <button type="submit" class="btn btn-primary" name="registerBtn">Зарегистрироваться</button>
+    <a href="/login">Уже зарегистрированы ?</a>
+</div>
+<?php $form::end() ?>
 
 <style>
+    h2 {
+        text-align: center;
+        padding-top: 200px;
+    }
+
     form {
         width: 25%;
         margin: 0 auto;
-        padding-top: 200px;
+    }
+
+    label {
+        margin-top: 20px;
+    }
+
+    .butns {
+        margin-top: 20px;
     }
 </style>
