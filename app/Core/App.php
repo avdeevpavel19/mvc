@@ -12,6 +12,7 @@ class App
     public Controller $controller;
     public Response   $response;
     public Database   $db;
+    public Session    $session;
 
     public function __construct(array $config)
     {
@@ -20,6 +21,7 @@ class App
         $this->view       = new View;
         $this->controller = new Controller;
         $this->response   = new Response;
+        $this->session    = new Session;
 
         $this->db = new Database($config['db']);
     }

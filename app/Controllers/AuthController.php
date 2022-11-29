@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Core\App;
 use App\Core\Controller;
 use App\Core\Request;
 use App\Models\Register;
@@ -15,7 +16,9 @@ class AuthController extends Controller
         if ($request->post()) {
             $user->loadData($request->body());
             if ($user->validate() && $user->save()) {
-                echo 'success';
+                App::$app->session->setFlash('success', "Спасибо за регистрацию <br> Войдите в аккаунт");
+                App::$app->response->redirect('/login');
+                exit();
             }
         }
 
