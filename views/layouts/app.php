@@ -28,12 +28,15 @@ use App\Core\App;
                 <li class="nav-item">
                     <a class="nav-link" aria-current="page" href="/">Главная</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/register">Регистрация</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/login">Вход</a>
-                </li>
+
+                <?php if (App::isGuest()): ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/register">Регистрация</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">Вход</a>
+                    </li>
+                <?php else: ?>
             </ul>
 
             <ul class="d-flex" style="align-items: center; width: 12%; justify-content: space-between;">
@@ -43,6 +46,7 @@ use App\Core\App;
                 <li class="nav-item">
                     <a href="/logout" class="btn btn-primary">Выйти</a>
                 </li>
+                <?php endif ?>
             </ul>
         </div>
     </div>

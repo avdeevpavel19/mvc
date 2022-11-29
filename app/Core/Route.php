@@ -6,13 +6,15 @@ use App\Exceptions\NotFoundException;
 
 class Route
 {
-    protected Request $request;
+    protected Request    $request;
+    protected Controller $controller;
 
     protected array $routes = [];
 
     public function __construct()
     {
-        $this->request = new Request;
+        $this->request    = new Request;
+        $this->controller = new Controller;
     }
 
     public function get($path, $callback)
@@ -41,6 +43,10 @@ class Route
             App::$app->controller = $controller;
             $controller->action   = $callback[1];
             $callback[0]          = $controller;
+
+            foreach ($controller->getMiddlewares() as $middleware) {
+                $middleware->execute();
+            }
         }
 
         return call_user_func($callback, $this->request);

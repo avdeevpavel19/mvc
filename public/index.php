@@ -2,6 +2,7 @@
 
 require_once __DIR__ . "/../vendor/autoload.php";
 
+use App\Controllers\ProfileController;
 use App\Core\App;
 use App\Controllers\MainController;
 use App\Controllers\AuthController;
@@ -30,6 +31,6 @@ $app->route->get('/login', [AuthController::class, 'login']);
 $app->route->post('/login', [AuthController::class, 'login']);
 $app->route->get('/logout', [AuthController::class, 'logout']);
 
-$app->route->get('/profile', [MainController::class, 'profile']);
+$app->route->get('/profile', [ProfileController::class, 'index']);
 
 $app->run();

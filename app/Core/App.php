@@ -3,7 +3,7 @@
 namespace App\Core;
 
 use App\Core\DB\Database;
-use App\Core\DB\DbModel;
+use App\Models\User;
 
 class App
 {
@@ -15,8 +15,8 @@ class App
     public Database   $db;
     public Session    $session;
     public string     $userClass;
-    public ?DbModel   $user;
-    
+    public ?User      $user;
+
     public function __construct(array $config)
     {
         self::$app        = $this;
@@ -37,7 +37,7 @@ class App
         }
     }
 
-    public function login(DbModel $user)
+    public function login(User $user)
     {
         $this->user   = $user;
         $primaryKey   = $user::primaryKey();
@@ -52,6 +52,11 @@ class App
     {
         $this->user = NULL;
         $this->session->remove('user');
+    }
+
+    public static function isGuest()
+    {
+        return !self::$app->user;
     }
 
     public function run()
