@@ -40,19 +40,19 @@ abstract class Model
                 }
 
                 if ($ruleName === self::REQUIRED_RULE && !$value) {
-                    $this->addError($attribute, self::REQUIRED_RULE);
+                    $this->addErrorForRule($attribute, self::REQUIRED_RULE);
                 }
 
                 if ($ruleName === self::MIN_RULE && strlen($value) < $rule['min']) {
-                    $this->addError($attribute, self::MIN_RULE, $rule);
+                    $this->addErrorForRule($attribute, self::MIN_RULE, $rule);
                 }
 
                 if ($ruleName === self::MAX_RULE && strlen($value) > $rule['max']) {
-                    $this->addError($attribute, self::MAX_RULE, $rule);
+                    $this->addErrorForRule($attribute, self::MAX_RULE, $rule);
                 }
 
                 if ($ruleName === self::CONFIRM_RULE && $value !== $this->{$rule['confirm']}) {
-                    $this->addError($attribute, self::CONFIRM_RULE);
+                    $this->addErrorForRule($attribute, self::CONFIRM_RULE);
                 }
             }
         }
@@ -60,7 +60,7 @@ abstract class Model
         return empty($this->errors);
     }
 
-    public function addError(string $attribute, string $rule, $params = [])
+    public function addErrorForRule(string $attribute, string $rule, $params = [])
     {
         $message = $this->errorMesages()[$rule] ?? '';
 
@@ -68,6 +68,11 @@ abstract class Model
             $message = str_replace("{{$key}}", $value, $message);
         }
 
+        $this->errors[$attribute][] = $message;
+    }
+
+    public function addError(string $attribute, string $message)
+    {
         $this->errors[$attribute][] = $message;
     }
 

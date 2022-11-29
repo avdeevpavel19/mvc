@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Core\App;
 use App\Core\Controller;
 use App\Core\Request;
+use App\Models\Login;
 use App\Models\Register;
 
 class AuthController extends Controller
@@ -25,8 +26,18 @@ class AuthController extends Controller
         return $this->render('register', ['user' => $user]);
     }
 
-    public function login()
+    public function login(Request $request)
     {
-        return $this->render('login');
+        $user = new Login;
+
+        if ($request->post()) {
+            $user->loadData($request->body());
+            if ($user->validate() && $user->login()) {
+                App::$app->response->redirect('/profile');
+                exit();
+            }
+        }
+
+        return $this->render('login', ['user' => $user]);
     }
 }

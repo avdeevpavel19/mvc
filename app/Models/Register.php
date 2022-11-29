@@ -24,7 +24,7 @@ class Register extends DbModel
         return ['login', 'password'];
     }
 
-    public function tableName(): string
+    public static function tableName(): string
     {
         return 'users';
     }
