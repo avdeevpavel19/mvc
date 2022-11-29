@@ -44,4 +44,9 @@ class Login extends Model
             'password' => 'Пароль'
         ];
     }
+
+    public function getLogin()
+    {
+        return $this->login;
+    }
 }

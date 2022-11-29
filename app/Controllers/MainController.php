@@ -12,4 +12,9 @@ class MainController extends Controller
 
         return $this->render('main', ['name' => $name]);
     }
+
+    public function profile()
+    {
+        return $this->render('profile');
+    }
 }

@@ -2,9 +2,7 @@
 
 namespace App\Models;
 
-use App\Core\DB\DbModel;
-
-class Register extends DbModel
+class Register extends User
 {
     public string $login           = '';
     public string $password        = '';
@@ -43,5 +41,10 @@ class Register extends DbModel
         $this->password = password_hash($this->password, PASSWORD_DEFAULT);
 
         return parent::save();
+    }
+
+    public function getLogin(): string
+    {
+        return $this->login;
     }
 }

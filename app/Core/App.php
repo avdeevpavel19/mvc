@@ -16,7 +16,7 @@ class App
     public Session    $session;
     public string     $userClass;
     public ?DbModel   $user;
-
+    
     public function __construct(array $config)
     {
         self::$app        = $this;
@@ -46,6 +46,12 @@ class App
         $this->session->set('user', $primaryValue);
 
         return true;
+    }
+
+    public function logout()
+    {
+        $this->user = NULL;
+        $this->session->remove('user');
     }
 
     public function run()

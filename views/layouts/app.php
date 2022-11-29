@@ -35,6 +35,15 @@ use App\Core\App;
                     <a class="nav-link" href="/login">Вход</a>
                 </li>
             </ul>
+
+            <ul class="d-flex" style="align-items: center; width: 12%; justify-content: space-between;">
+                <li class="nav-item">
+                    <a class="nav-link" href="/profile">Профиль</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/logout" class="btn btn-primary">Выйти</a>
+                </li>
+            </ul>
         </div>
     </div>
 </nav>
@@ -48,3 +57,9 @@ use App\Core\App;
 {{content}}
 </body>
 </html>
+
+<style>
+    li {
+        list-style-type: none;
+    }
+</style>
