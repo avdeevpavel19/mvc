@@ -24,6 +24,11 @@ class Register extends DbModel
         return ['login', 'password'];
     }
 
+    public function tableName(): string
+    {
+        return 'users';
+    }
+
     public function labels(): array
     {
         return [
@@ -31,5 +36,12 @@ class Register extends DbModel
             'password'        => 'Пароль',
             'passwordConfirm' => 'Повторный пароль',
         ];
+    }
+
+    public function save()
+    {
+        $this->password = password_hash($this->password, PASSWORD_DEFAULT);
+
+        return parent::save();
     }
 }

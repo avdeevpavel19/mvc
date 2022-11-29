@@ -14,7 +14,7 @@ class AuthController extends Controller
 
         if ($request->post()) {
             $user->loadData($request->body());
-            if ($user->validate()) {
+            if ($user->validate() && $user->save()) {
                 echo 'success';
             }
         }
