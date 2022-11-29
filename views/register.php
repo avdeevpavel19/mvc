@@ -10,7 +10,7 @@
     </div>
     <div class="mb-3">
         <label for="exampleInputPassword1" class="form-label">Повторный пароль</label>
-        <input type="password" class="form-control" id="exampleInputPassword1" name="repeatPassword" placeholder="Введите повторный пароль">
+        <input type="password" class="form-control" id="exampleInputPassword1" name="passwordConfirm" placeholder="Введите повторный пароль">
     </div>
 
     <div class="butns" style="display: flex; justify-content: space-between">
