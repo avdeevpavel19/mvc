@@ -54,6 +54,23 @@ abstract class Model
                 if ($ruleName === self::CONFIRM_RULE && $value !== $this->{$rule['confirm']}) {
                     $this->addErrorForRule($attribute, self::CONFIRM_RULE);
                 }
+
+                if ($ruleName === self::UNIQUE_RULE) {
+                    $className  = $rule['class'];
+                    $uniqueAttr = $rule['attribute'] ?? $attribute;
+
+                    $tableName = $className::tableName();
+                    $db        = App::$app->db;
+
+                    $statement = $db->prepare("SELECT * FROM $tableName WHERE $uniqueAttr = :$uniqueAttr");
+                    $statement->bindValue(":$uniqueAttr", $value);
+                    $statement->execute();
+                    $record = $statement->fetchObject();
+
+                    if ($record) {
+                        $this->addErrorForRule($attribute, self::UNIQUE_RULE, ['field' => $this->getLabel($attribute)]);
+                    }
+                }
             }
         }
 
@@ -82,7 +99,8 @@ abstract class Model
             self::REQUIRED_RULE => 'Это поле обязательное',
             self::MIN_RULE      => 'Поле должно быть не меньше чем {min}',
             self::MAX_RULE      => 'Поле должно быть не больше чем {max}',
-            self::CONFIRM_RULE  => 'Повторный пароль не совпадает'
+            self::CONFIRM_RULE  => 'Повторный пароль не совпадает',
+            self::UNIQUE_RULE   => 'Пользователь с этим {field} уже существует'
         ];
     }
 

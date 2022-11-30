@@ -11,7 +11,7 @@ class Register extends User
     public function rules(): array
     {
         return [
-            'login'           => [self::REQUIRED_RULE, [self::MIN_RULE, 'min' => 2], [self::MAX_RULE, 'max' => 20]],
+            'login'           => [self::REQUIRED_RULE, [self::MIN_RULE, 'min' => 2], [self::MAX_RULE, 'max' => 20], [self::UNIQUE_RULE, 'class' => self::class]],
             'password'        => [self::REQUIRED_RULE, [self::MIN_RULE, 'min' => 3], [self::MAX_RULE, 'max' => 30]],
             'passwordConfirm' => [self::REQUIRED_RULE, [self::CONFIRM_RULE, 'confirm' => 'password']]
         ];
