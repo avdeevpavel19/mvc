@@ -1,8 +1,10 @@
 <?php
 
 /** @var $user \App\Models\Register */
+/** @var $this \App\Core\View */
 
-$form = new \App\Core\Form\Form;
+$form        = new \App\Core\Form\Form;
+$this->title = 'Регистрация';
 
 ?>
 

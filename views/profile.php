@@ -2,6 +2,9 @@
 
 use App\Core\App;
 
+/** @var $this \App\Core\View */
+$this->title = 'Профиль';
+
 ?>
 
 <h3>Привет <b><?php echo App::$app->user->getLogin() ?></b></h3>

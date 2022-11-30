@@ -4,10 +4,12 @@ namespace App\Core;
 
 class View
 {
+    public string $title = '';
+
     public function renderView($view, $params = [])
     {
-        $layout      = $this->layout();
         $viewContent = $this->viewContent($view, $params);
+        $layout      = $this->layout();
 
         return str_replace('{{content}}', $viewContent, $layout);
     }
